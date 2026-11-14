@@ -2140,6 +2140,8 @@ dependencies = [
 name = "horizon-web"
 version = "0.1.0"
 dependencies = [
+ "horizon-core",
+ "js-sys",
  "wasm-bindgen",
  "web-sys",
 ]

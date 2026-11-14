@@ -105,11 +105,16 @@ async function main() {
   const format = navigator.gpu.getPreferredCanvasFormat();
   context.configure({ device, format, alphaMode: "opaque" });
 
+  const width = 11;
+  const depth = 7;
+  const terrain = client.terrain_heights(width, depth);
   const vertices = [];
-  for (let z = -3; z <= 3; z++) {
-    for (let x = -5; x <= 5; x++) {
-      const height = 0.2 + ((x * 17 + z * 31 + 97) % 3) * 0.22;
-      vertices.push(...cube(x, height / 2, z, [0.18 + height, 0.55, 0.28]));
+  for (let z = 0; z < depth; z++) {
+    for (let x = 0; x < width; x++) {
+      const height = terrain[z * width + x];
+      const worldX = x - Math.floor(width / 2);
+      const worldZ = z - Math.floor(depth / 2);
+      vertices.push(...cube(worldX, height / 2, worldZ, [0.18 + height, 0.55, 0.28]));
     }
   }
   const vertexBuffer = device.createBuffer({
