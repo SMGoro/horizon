@@ -2137,6 +2137,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "horizon-web"
+version = "0.1.0"
+dependencies = [
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
 name = "horizon-world"
 version = "0.1.0"
 dependencies = [

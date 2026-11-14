@@ -1,0 +1,18 @@
+# Horizon Web
+
+This is the first browser client slice: a single-threaded, offline WebGPU
+entry point with a deterministic voxel scene. The Rust/WASM client owns the
+frame counter and world seed; the browser adapter owns WebGPU setup and input.
+
+Build the package with:
+
+```sh
+wasm-pack build crates/horizon-web --target web --out-dir ../../web/horizon-web/pkg --release
+python3 -m http.server 8080 --directory web/horizon-web
+```
+
+Open <http://localhost:8080/> in a WebGPU-capable browser.
+
+The package intentionally disables `wasm-opt` so the build does not depend on
+the Binaryen download; `wasm-pack` still runs `wasm-bindgen` and emits the
+browser module in `web/horizon-web/pkg`.

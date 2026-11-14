@@ -1,0 +1,25 @@
+[package]
+name = "horizon-web"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Single-threaded offline WebGPU client entry point"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+web-sys = { version = "0.3", features = [
+    "Document",
+    "Element",
+    "HtmlCanvasElement",
+    "Window",
+] }
+
+[lints]
+workspace = true
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
